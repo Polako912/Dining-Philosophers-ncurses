@@ -9,7 +9,12 @@ class Philosopher
     
     public:
     Philosopher();
+    Philosopher(int id);
     ~Philosopher();
+
+    void Eat();
+    void Hungry();
+    void Think();
 
     enum PhilospherState
     {
