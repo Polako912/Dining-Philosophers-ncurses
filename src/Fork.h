@@ -8,7 +8,10 @@ class Fork
         TAKEN
     };
 
+    public:
+    
     int Id;
+    std::mutex forkMutex;
     
     Fork();
     ~Fork();
