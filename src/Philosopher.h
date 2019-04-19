@@ -3,12 +3,13 @@
 
 class Philosopher
 {
+    public:
+
     int Id;
+    int statePhilo;
     Fork Left;
     Fork Right;
     std::mutex philoMutex;
-    
-    public:
     
     Philosopher();
     Philosopher(int id);
@@ -20,6 +21,11 @@ class Philosopher
     void PickLeftFork(int number);
     void PickRightFork(int number);
     void Dine();
+
+    int getId();
+    void setId(int number);
+    int getState();
+    void setState(int number);
 
     enum PhilospherState
     {
