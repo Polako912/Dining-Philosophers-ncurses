@@ -28,18 +28,34 @@ void Philosopher::Eat()
 
 void Philosopher::Hungry()
 {
-
+    std::cout << "Philosopher " << this->Id << " is hungry" << std::endl;
 }
 
 void Philosopher::Think()
 {
-
+    std::cout << "Philosopher " << this->Id << " is thinking" << std::endl;
 }
 
 void Philosopher::PickLeftFork(int number)
 {
-    std::cout<<"Philosopher " << this->Id << " has picked up" << Left.Id << " fork" << std::endl;
-    
+    Fork fork;
+    std::unique_lock<std::mutex> forkLock(Left.forkMutex);
+    fork.setState(1);
+    if(fork.getState == 1)
+    { 
+        std::cout<<"Philosopher " << this->Id << " has picked up" << Left.Id << " fork" << std::endl;
+    }
+    forkLock.unlock();
+    fork.setState(0);
+    if(fork.getState == 0)
+    {
+        PutLeftFork(number);
+    }
+}
+
+void Philosopher::PutLeftFork(int number)
+{
+    std::cout<<"Philosopher " << this->Id << " has put down" << Left.Id << " fork" << std::endl;
 }
 
 void Philosopher::PickRightFork(int number)
@@ -47,9 +63,14 @@ void Philosopher::PickRightFork(int number)
     std::cout<<"Philosopher " << this->Id << " has picked up" << Right.Id << " fork" <<std::endl;
 }
 
-void Philosopher::Dine()
+void Philosopher::PutRightFork(int number)
 {
 
+}
+
+void Philosopher::Dine()
+{
+    
 }
 
 int Philosopher::getId()

@@ -19,7 +19,9 @@ class Philosopher
     void Hungry();
     void Think();
     void PickLeftFork(int number);
+    void PutLeftFork(int number);
     void PickRightFork(int number);
+    void PutRightFork(int number);
     void Dine();
 
     int getId();
