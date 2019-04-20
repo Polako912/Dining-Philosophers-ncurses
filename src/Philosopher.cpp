@@ -38,34 +38,22 @@ void Philosopher::Think()
 
 void Philosopher::PickLeftFork(int number)
 {
-    Fork fork;
-    std::unique_lock<std::mutex> forkLock(Left.forkMutex);
-    fork.setState(1);
-    if(fork.getState() == 1)
-    { 
-        std::cout<<"Philosopher " << this->Id << " has picked up" << Left.Id << " fork" << std::endl;
-    }
-    forkLock.unlock();
-    fork.setState(0);
-    if(fork.getState() == 0)
-    {
-        PutLeftFork(number);
-    }
+   std::cout << "Philosopher " << this->Id << " has picked up " << Right.Id << " fork" << std::endl; 
 }
 
 void Philosopher::PutLeftFork(int number)
 {
-    std::cout<<"Philosopher " << this->Id << " has put down" << Left.Id << " fork" << std::endl;
+    std::cout<<"Philosopher " << this->Id << " has put down " << Left.Id << " fork" << std::endl;
 }
 
 void Philosopher::PickRightFork(int number)
 {
-    std::cout<<"Philosopher " << this->Id << " has picked up" << Right.Id << " fork" <<std::endl;
+    std::cout<<"Philosopher " << this->Id << " has picked up " << Right.Id << " fork" <<std::endl;
 }
 
 void Philosopher::PutRightFork(int number)
 {
-
+    std::cout << "Philosopher " << this->Id << " has put down " << Right.Id << " fork" << std::endl;
 }
 
 void Philosopher::Dine(int number)
@@ -76,7 +64,20 @@ void Philosopher::Dine(int number)
 
     while(true)
     {
+        if(philo.getState() == 0)
+        {
 
+        }
+
+        if(philo.getState() == 1)
+        {
+
+        }
+
+        if(philo.getState() == 2)
+        {
+            
+        }
     }
 }
 
