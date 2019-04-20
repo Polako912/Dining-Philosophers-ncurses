@@ -1,4 +1,3 @@
-#pragma once
 #include "Philosopher.h"
 #include <mutex>
 #include <thread>
@@ -11,6 +10,7 @@ Philosopher::Philosopher()
 Philosopher::Philosopher(int id)
 {
     this->Id = id;
+    this->statePhilo = 2;
 }
 
 Philosopher::~Philosopher()
@@ -41,13 +41,13 @@ void Philosopher::PickLeftFork(int number)
     Fork fork;
     std::unique_lock<std::mutex> forkLock(Left.forkMutex);
     fork.setState(1);
-    if(fork.getState == 1)
+    if(fork.getState() == 1)
     { 
         std::cout<<"Philosopher " << this->Id << " has picked up" << Left.Id << " fork" << std::endl;
     }
     forkLock.unlock();
     fork.setState(0);
-    if(fork.getState == 0)
+    if(fork.getState() == 0)
     {
         PutLeftFork(number);
     }
@@ -68,9 +68,16 @@ void Philosopher::PutRightFork(int number)
 
 }
 
-void Philosopher::Dine()
+void Philosopher::Dine(int number)
 {
-    
+    Philosopher philo (number);
+
+    philo.setState(rand()%3);
+
+    while(true)
+    {
+
+    }
 }
 
 int Philosopher::getId()

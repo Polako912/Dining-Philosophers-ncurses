@@ -1,4 +1,6 @@
+#pragma once
 #include <iostream>
+#include <mutex>
 
 class Fork
 {
@@ -21,4 +23,4 @@ class Fork
         FREE,
         TAKEN
     };
-}
+};

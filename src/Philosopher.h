@@ -1,4 +1,6 @@
+#pragma once
 #include <iostream>
+#include <mutex>
 #include "Fork.h"
 
 class Philosopher
@@ -22,7 +24,7 @@ class Philosopher
     void PutLeftFork(int number);
     void PickRightFork(int number);
     void PutRightFork(int number);
-    void Dine();
+    void Dine(int number);
 
     int getId();
     void setId(int number);
@@ -35,4 +37,4 @@ class Philosopher
         EATING,
         THINKING
     };
-}
+};
