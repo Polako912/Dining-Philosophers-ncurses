@@ -1,9 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <thread>
-#include "Philosopher.h"
-
-bool run;
+#include "../include/Philosopher.h"
 
 int main()
 {
@@ -35,7 +33,7 @@ int main()
         tmp = static_cast<char>(std::cin.get());
         if (tmp == 'n') 
         {
-            run = false;
+            philo->run = false;
         }
     }
 
