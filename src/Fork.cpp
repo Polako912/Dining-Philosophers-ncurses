@@ -6,6 +6,12 @@ Fork::Fork()
 
 }
 
+Fork::Fork(int number)
+{
+    this->Id = number;
+    this->stateFork = 0;
+}
+
 Fork::~Fork()
 {
     

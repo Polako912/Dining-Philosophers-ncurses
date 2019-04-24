@@ -9,7 +9,7 @@ all: clean main
 
 main: Fork.o Philosopher.o Window.o Main.o 
 	@echo "Generate binary, output is in ${program}, names Philosophers"
-	@g++ ${objects}Main.o ${pbjects}Philosopher.o ${objects}Fork.o ${objects}Window.o -o ${program}Philosophers ${standart_flag} ${libs} ${debug_flags}
+	@g++ ${objects}Main.o ${objects}Philosopher.o ${objects}Fork.o ${objects}Window.o -o ${program}Philosophers ${standart_flag} ${libs} ${debug_flags}
 
 Main.o: ${source}Main.cpp
 	@echo "Compile main"

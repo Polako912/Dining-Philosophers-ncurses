@@ -23,7 +23,7 @@ int main()
     {
         philosophers.push_back(i+1);
         forks.push_back(i+1);
-        threads[i] = std::thread(&Philosopher::Dine, &philo, i);
+        //threads[i] = std::thread(&Philosopher::Dine, &philo, i);
     }
 
     char tmp;
@@ -39,7 +39,7 @@ int main()
 
     for(int k = 0; k < number; k++)
     {
-        threads[k].join();
+        //threads[k].join();
         std::cout<<"Philosopher "<< k+1 <<" has finished"<<std::endl ;
     }
 

@@ -11,6 +11,7 @@ class Fork
     std::mutex forkMutex;
     
     Fork();
+    Fork(int number);
     ~Fork();
 
     int getId();
