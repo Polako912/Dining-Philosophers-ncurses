@@ -1,7 +1,11 @@
 #include "../include/Philosopher.h"
+#include <iostream>
 #include <mutex>
 #include <thread>
-#include <vector>
+#include <ctime>
+#include <chrono>
+#include <cstdlib>
+#include <string>
 
 Philosopher::Philosopher()
 {
@@ -11,7 +15,9 @@ Philosopher::Philosopher()
 Philosopher::Philosopher(int id)
 {
     this->Id = id;
-    this->statePhilo = 2;
+    //this->statePhilo = 2;
+    statusPhilo.resize(id);
+    //forkMutex[id];
     this->run = true;
 }
 
@@ -20,72 +26,48 @@ Philosopher::~Philosopher()
     
 }
 
-void Philosopher::Eat()
+void Philosopher::Eat(int id)
 {
-    // std::lock(Left->forkMutex, Right->forkMutex);
-
-    // std::lock_guard<std::mutex> left_lock(Left->forkMutex, std::adopt_lock);
-    // std::lock_guard<std::mutex> right_lock(Right->forkMutex, std::adopt_lock);
-    
-    Philosopher::setState(1);
-    std::cout << "Philosopher " << this->Id << " is eating" << std::endl;
+    //statusPhilo[this->Id].state = EATING;
+    std::cout << "Philosopher " << id << " is eating" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(2500+(std::rand() % 1000)));
 }
 
-void Philosopher::Hungry()
+void Philosopher::Hungry(int id)
 {
-    Philosopher::setState(0);
-    std::cout << "Philosopher " << this->Id << " is hungry" << std::endl;
+    //statusPhilo[this->Id].state = HUNGRY;
+    std::cout << "Philosopher " << id << " is hungry" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(2500+(std::rand() % 1000)));
 }
 
-void Philosopher::Think()
+void Philosopher::Think(int id)
 {   
-    Philosopher::setState(2);
-    std::cout << "Philosopher " << this->Id << " is thinking" << std::endl;
+    //statusPhilo[this->Id].state = THINKING;
+    std::cout << "Philosopher " << id << " is thinking" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(2500+(std::rand() % 1000)));
 }
 
-void Philosopher::PickLeftFork()
+void Philosopher::PickLeftFork(int id)
 {
-   std::cout << "Philosopher " << this->Id << " has picked up " << Right->Id << " fork" << std::endl; 
+   std::cout << "Philosopher " << id << " has picked up left fork" << std::endl; 
 }
 
-void Philosopher::PutLeftFork()
+void Philosopher::PutLeftFork(int id)
 {
-    std::cout<<"Philosopher " << this->Id << " has put down " << Left->Id << " fork" << std::endl;
+    std::cout<<"Philosopher " << id << " has put down left fork" << std::endl;
 }
 
-void Philosopher::PickRightFork()
+void Philosopher::PickRightFork(int id)
 {
-    std::cout<<"Philosopher " << this->Id << " has picked up " << Right->Id << " fork" <<std::endl;
+    std::cout<<"Philosopher " << id << " has picked up right fork" <<std::endl;
 }
 
-void Philosopher::PutRightFork()
+void Philosopher::PutRightFork(int id)
 {
-    std::cout << "Philosopher " << this->Id << " has put down " << Right->Id << " fork" << std::endl;
+    std::cout << "Philosopher " << id << " has put down right fork" << std::endl;
 }
 
-bool Philosopher::AbleToEat(int left, int right)
-{
-    std::vector<Philosopher> temp;
-    temp[left].state = EATING;
-}
 
-void Philosopher::Dine(int number)
-{
-    Philosopher philo (number);
-    Fork fork (number);
-
-    philo.setState(0);
-
-    while(this->run)
-    {
-        fork.forkMutex.try_lock();
-        Philosopher::setState(3);
-        PickLeftFork();
-    }
-}
 
 int Philosopher::getId()
 {
@@ -97,12 +79,12 @@ void Philosopher::setId(int number)
     this->Id = number;
 }
 
-int Philosopher::getState()
-{
-    return statePhilo;
-}
+// int Philosopher::getState()
+// {
+//     return statePhilo;
+// }
 
-void Philosopher::setState(int number)
-{
-    Philosopher::statePhilo = number;
-}
+// void Philosopher::setState(int number)
+// {
+//     Philosopher::statePhilo = number;
+// }
