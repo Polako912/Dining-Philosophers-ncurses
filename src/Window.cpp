@@ -63,7 +63,7 @@ void Window::PickUpRightFork(int right)
     mt.lock();
     move(right, 55);
     clrtoeol();
-    printw("Widelec[%d] jest:\twolny", right+1);
+    printw("Widelec[%d] jest:\zajety", right+1);
     refresh();
     mt.unlock();
 }
