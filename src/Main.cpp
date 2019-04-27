@@ -5,11 +5,11 @@
 #include "../include/Philosopher.h"
 
 bool AbleToEat(int left, int right, int id);
-void Dine(int number);
+void Dine(int number, int count);
 
 bool run = true;
 
-const int number = 5;
+const int number = 5000;
 
 std::vector<int> philosophers;
 std::vector<int> forks;
@@ -26,7 +26,7 @@ int main()
 
     int number;
 
-    //std::cout << "Podaj liczbe filozofow" << std::endl;
+    std::cout << "Podaj liczbe filozofow" << std::endl;
     std::cin >> number;
 
     //forkMutex.resize(number);
@@ -38,7 +38,7 @@ int main()
     {
         philosophers.push_back(i+1);
         forks.push_back(i+1);
-        threads[i] = std::thread(Dine, i);
+        threads[i] = std::thread(Dine, i, number);
     }
 
     char tmp;
@@ -85,13 +85,13 @@ bool AbleToEat(int left, int right, int id)
     }
 }
 
-void Dine(int number)
+void Dine(int number, int count)
 {
     Philosopher philo (number);
     Fork fork (number);
 
-    int left = std::min(number, (number + 1) % (5));
-    int right = std::max(number, (number + 1) % (5));
+    int left = std::min(number, (number + 1) % (count));
+    int right = std::max(number, (number + 1) % (count));
 
     //philo.setState(0);
 
