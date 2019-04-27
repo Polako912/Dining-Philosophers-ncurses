@@ -17,8 +17,9 @@ Philosopher::Philosopher(int id)
     this->Id = id;
     //this->statePhilo = 2;
     statusPhilo.resize(id);
+    //forkMutex.resize(id);
     //forkMutex[id];
-    this->run = true;
+    //this->run = true;
 }
 
 Philosopher::~Philosopher()

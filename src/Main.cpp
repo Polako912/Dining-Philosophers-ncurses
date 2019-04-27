@@ -1,16 +1,22 @@
 #include <iostream>
 #include <vector>
 #include <thread>
+//#include <concurrent_vector.h>
 #include "../include/Philosopher.h"
 
 bool AbleToEat(int left, int right, int id);
 void Dine(int number);
+
+bool run = true;
 
 const int number = 5;
 
 std::vector<int> philosophers;
 std::vector<int> forks;
 std::mutex forkMutex[number];
+//std::list<std::mutex> forkMutex;
+//std::vector<std::mutex> forkMutex;
+//concurrent_vector<std::mutex> forkMutex;
 
 int main()
 {
@@ -18,10 +24,13 @@ int main()
 
     Philosopher philo;
 
-    //int number = 5;
+    int number;
 
     //std::cout << "Podaj liczbe filozofow" << std::endl;
-    //std::cin >> number;
+    std::cin >> number;
+
+    //forkMutex.resize(number);
+    //std::vector<std::mutex> forkMutex(number);
 
     std::thread threads[number];
 
@@ -39,7 +48,7 @@ int main()
         tmp = static_cast<char>(std::cin.get());
         if (tmp == 'n') 
         {
-            philo.run = false;
+            run = false;
         }
     }
 
@@ -86,7 +95,7 @@ void Dine(int number)
 
     //philo.setState(0);
 
-    while(true)
+    while(run)
     {
         if(AbleToEat(left, right, number))
         {

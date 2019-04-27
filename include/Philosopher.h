@@ -2,6 +2,12 @@
 #include <iostream>
 #include <mutex>
 #include <vector>
+#include <memory>
+#include <cstdio>
+#include <fstream>
+#include <cassert>
+#include <list>
+#include <functional>
 #include "Fork.h"
 
 class Philosopher
@@ -27,11 +33,12 @@ class Philosopher
     //int statePhilo;
     //Fork *Left;
     //Fork *Right;
-    bool run;
+    //bool run;
     std::vector<PhiloState> statusPhilo;
-    //std::mutex forkMutex[5];
+    //std::list<std::mutex> forkMutex;
+    //std::unique_ptr<std::mutex> forkMutex;
+    //std::vector<std::unique_ptr<forkMutex>> p;
     //std::vector<std::unique_ptr<std::mutex>> forkMutex;
-    
     Philosopher();
     Philosopher(int id);
     ~Philosopher();
