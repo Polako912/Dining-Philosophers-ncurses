@@ -14,6 +14,8 @@ bool run = true;
 
 const int number = 5000;
 
+Window win;
+
 std::vector<int> philosophers;
 std::vector<int> forks;
 std::mutex forkMutex[number];
@@ -27,7 +29,7 @@ int main()
     srand(time(NULL));
 
     Philosopher philo;
-    Window win;
+    //Window win;
 
     int number;
 
@@ -76,23 +78,23 @@ int main()
 bool AbleToEat(int left, int right, int id)
 {
     Philosopher philo;
-    Window win;
+    //Window win;
 
     while(true) if(forkMutex[left].try_lock())
     {
         //philo.PickLeftFork(id);
         win.PickUpLeftFork(left);
-        win.RefreshFork(left, "zajety");
-        win.RefreshPhiosopher(id, "ma lewy widelec");
+        //win.RefreshFork(left, "zajety");
+        //win.RefreshPhiosopher(id, "ma lewy widelec");
         //statusPhilo[this->Id].state = HAS_LEFT_FORK;
 
         if(forkMutex[right].try_lock())
         {
             //philo.PickRightFork(id);
             win.PickUpRightFork(right);
-            win.RefreshFork(right, "zajety");
-            win.RefreshPhiosopher(id, "ma oba widelce");
-            win.RefreshPhiosopher(id, "je");
+            //win.RefreshFork(right, "zajety");
+            //win.RefreshPhiosopher(id, "ma oba widelce");
+            //win.RefreshPhiosopher(id, "je");
             //statusPhilo[this->Id].state = HAS_BOTH_FORKS;
             //philo.Eat(id);
             return true;
@@ -101,7 +103,7 @@ bool AbleToEat(int left, int right, int id)
         {
             forkMutex[left].unlock();
             win.PutDownLeftFork(left);
-            win.RefreshPhiosopher(left, "odlozyl lewy widelec");
+            //win.RefreshPhiosopher(left, "odlozyl lewy widelec");
             //philo.PutLeftFork(id);
         }
     }
@@ -111,7 +113,7 @@ void Dine(int number, int count)
 {
     Philosopher philo (number);
     Fork fork (number);
-    Window win;
+    //Window win;
 
     int left = std::min(number, (number + 1) % (count));
     int right = std::max(number, (number + 1) % (count));
@@ -124,11 +126,13 @@ void Dine(int number, int count)
         {
             //philo.PutLeftFork(number);
             win.PutDownLeftFork(number);
+            //win.RefreshFork(left, "wolny");
             forkMutex[left].unlock();
             //philo.PutRightFork(number);
             win.PickUpRightFork(number);
+            //win.RefreshFork(right, "wolny");
             forkMutex[right].unlock();
-            win.RefreshPhiosopher(number, "mysli");
+            //win.RefreshPhiosopher(number, "mysli");
             //philo.Think(number);
         }
     }
