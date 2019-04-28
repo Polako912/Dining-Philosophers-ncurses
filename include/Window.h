@@ -13,7 +13,7 @@ class Window
     Window();
     ~Window();
 
-    void Visualise(int number, std::string status);
+    void Visualise(int number);
     void PutDownLeftFork(int left);
     void PutDownRightFork(int right);
     void PickUpLeftFork(int left);

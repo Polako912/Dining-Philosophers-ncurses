@@ -68,8 +68,6 @@ void Philosopher::PutRightFork(int id)
     std::cout << "Philosopher " << id << " has put down right fork" << std::endl;
 }
 
-
-
 int Philosopher::getId()
 {
     return this->Id;

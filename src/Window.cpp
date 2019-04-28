@@ -12,13 +12,13 @@ Window::~Window()
 
 }
 
-void Window::Visualise(int number, std::string status)
+void Window::Visualise(int number)
 {
     for (int i = 0; i < number; i++)
     {
         mt.lock();
         move(i, 0);
-        printw(" Filozof nr: %d | Stan: %s", i+1, status);
+        printw("Filozof nr: %d | jest glodny", i+1);
         refresh();
         move(i, 55);
         clrtoeol();
@@ -33,7 +33,7 @@ void Window::PutDownLeftFork(int left)
     mt.lock();
     move(left, 55);
     clrtoeol();
-    printw("Widelec[%d] jest:\twolny", left+1);
+    printw("Widelec[%d] jest: wolny", left+1);
     refresh();
     mt.unlock();
 }
@@ -43,7 +43,7 @@ void Window::PutDownRightFork(int right)
     mt.lock();
     move(right, 55);
     clrtoeol();
-    printw("Widelec[%d] jest:\twolny", right+1);
+    printw("Widelec[%d] jest: wolny", right+1);
     refresh();
     mt.unlock();
 }
@@ -53,7 +53,7 @@ void Window::PickUpLeftFork(int left)
     mt.lock();
     move(left, 55);
     clrtoeol();
-    printw("Widelec[%d] jest:\zajety", left+1);
+    printw("Widelec[%d] jest: zajety", left+1);
     refresh();
     mt.unlock();
 }
@@ -63,7 +63,7 @@ void Window::PickUpRightFork(int right)
     mt.lock();
     move(right, 55);
     clrtoeol();
-    printw("Widelec[%d] jest:\zajety", right+1);
+    printw("Widelec[%d] jest: zajety", right+1);
     refresh();
     mt.unlock();
 }
