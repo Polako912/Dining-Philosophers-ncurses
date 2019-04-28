@@ -97,6 +97,7 @@ bool AbleToEat(int left, int right, int id)
             //win.RefreshPhiosopher(id, "je");
             //statusPhilo[this->Id].state = HAS_BOTH_FORKS;
             //philo.Eat(id);
+            win.Eat(id);
             return true;
         }
         else
@@ -134,6 +135,7 @@ void Dine(int number, int count)
             forkMutex[right].unlock();
             //win.RefreshPhiosopher(number, "mysli");
             //philo.Think(number);
+            win.Think(number);
         }
     }
 }

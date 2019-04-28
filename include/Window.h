@@ -18,6 +18,10 @@ class Window
     void PutDownRightFork(int right);
     void PickUpLeftFork(int left);
     void PickUpRightFork(int right);
+    void Eat(int number);
+    void Think(int number);
+    void Hungry(int number);
+    void ReadyToEat(int number);
     void RefreshPhiosopher(int id, std::string status);
     void RefreshFork(int id, std::string status);
 
