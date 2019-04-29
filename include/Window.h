@@ -14,10 +14,10 @@ class Window
     ~Window();
 
     void Visualise(int number);
-    void PutDownLeftFork(int left);
-    void PutDownRightFork(int right);
-    void PickUpLeftFork(int left);
-    void PickUpRightFork(int right);
+    void PutDownLeftFork(int left, int id);
+    void PutDownRightFork(int right, int id);
+    void PickUpLeftFork(int left, int id);
+    void PickUpRightFork(int right, int id);
     void Eat(int number);
     void Think(int number);
     void Hungry(int number);

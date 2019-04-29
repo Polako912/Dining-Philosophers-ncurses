@@ -3,7 +3,6 @@
 #include <thread>
 #include <cstdlib>
 #include "ncurses.h"
-//#include <concurrent_vector.h>
 #include "../include/Philosopher.h"
 #include "../include/Window.h"
 
@@ -12,16 +11,11 @@ void Dine(int number, int count);
 
 bool run = true;
 
-const int number = 5000;
-
 Window win;
 
 std::vector<int> philosophers;
 std::vector<int> forks;
-std::mutex forkMutex[number];
-//std::list<std::mutex> forkMutex;
-//std::vector<std::mutex> forkMutex;
-//concurrent_vector<std::mutex> forkMutex;
+std::mutex forkMutex[5000];
 
 int main()
 {
@@ -29,21 +23,18 @@ int main()
     srand(time(NULL));
 
     Philosopher philo;
-    //Window win;
 
     int number;
 
     cbreak();
     start_color();
-    init_pair(1, COLOR_YELLOW, COLOR_BLACK);
+    init_pair(1, COLOR_BLUE, COLOR_BLACK);
     attron(COLOR_PAIR(1));
 
     std::cout << "Podaj liczbe filozofow" << std::endl;
     std::cin >> number;
     
     win.Visualise(number);
-    //forkMutex.resize(number);
-    //std::vector<std::mutex> forkMutex(number);
 
     std::thread threads[number];
 
@@ -68,7 +59,7 @@ int main()
     for(int k = 0; k < number; k++)
     {
         threads[k].join();
-        std::cout<<"Philosopher "<< k+1 <<" has finished"<<std::endl ;
+        //std::cout<<"Philosopher "<< k+1 <<" has finished"<<std::endl ;
     }
 
     endwin();
@@ -77,13 +68,13 @@ int main()
 
 bool AbleToEat(int left, int right, int id)
 {
-    Philosopher philo;
+    //Philosopher philo;
     //Window win;
 
-    while(true) if(forkMutex[left].try_lock())
+    while(run) if(forkMutex[left].try_lock())
     {
         //philo.PickLeftFork(id);
-        win.PickUpLeftFork(left);
+        win.PickUpLeftFork(left, id);
         //win.RefreshFork(left, "zajety");
         //win.RefreshPhiosopher(id, "ma lewy widelec");
         //statusPhilo[this->Id].state = HAS_LEFT_FORK;
@@ -91,19 +82,21 @@ bool AbleToEat(int left, int right, int id)
         if(forkMutex[right].try_lock())
         {
             //philo.PickRightFork(id);
-            win.PickUpRightFork(right);
+            win.PickUpRightFork(right, id);
             //win.RefreshFork(right, "zajety");
             //win.RefreshPhiosopher(id, "ma oba widelce");
             //win.RefreshPhiosopher(id, "je");
             //statusPhilo[this->Id].state = HAS_BOTH_FORKS;
             //philo.Eat(id);
-            win.Eat(id);
+            win.ReadyToEat(id);
+            //win.Eat(id);
             return true;
         }
         else
         {
+            win.PutDownLeftFork(left, id);
             forkMutex[left].unlock();
-            win.PutDownLeftFork(left);
+            win.Hungry(id);
             //win.RefreshPhiosopher(left, "odlozyl lewy widelec");
             //philo.PutLeftFork(id);
         }
@@ -125,16 +118,12 @@ void Dine(int number, int count)
     {
         if(AbleToEat(left, right, number))
         {
-            //philo.PutLeftFork(number);
-            win.PutDownLeftFork(number);
-            //win.RefreshFork(left, "wolny");
+            win.Eat(number);
+            win.PutDownLeftFork(number, count);
             forkMutex[left].unlock();
-            //philo.PutRightFork(number);
-            win.PickUpRightFork(number);
-            //win.RefreshFork(right, "wolny");
+            win.PickUpRightFork(number, count);
             forkMutex[right].unlock();
-            //win.RefreshPhiosopher(number, "mysli");
-            //philo.Think(number);
+            
             win.Think(number);
         }
     }

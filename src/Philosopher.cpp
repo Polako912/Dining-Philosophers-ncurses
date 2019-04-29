@@ -29,21 +29,21 @@ Philosopher::~Philosopher()
 
 void Philosopher::Eat(int id)
 {
-    //statusPhilo[this->Id].state = EATING;
+    statusPhilo[this->Id].state = EATING;
     std::cout << "Philosopher " << id << " is eating" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(2500+(std::rand() % 1000)));
 }
 
 void Philosopher::Hungry(int id)
 {
-    //statusPhilo[this->Id].state = HUNGRY;
+    statusPhilo[this->Id].state = HUNGRY;
     std::cout << "Philosopher " << id << " is hungry" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(2500+(std::rand() % 1000)));
 }
 
 void Philosopher::Think(int id)
 {   
-    //statusPhilo[this->Id].state = THINKING;
+    statusPhilo[this->Id].state = THINKING;
     std::cout << "Philosopher " << id << " is thinking" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(2500+(std::rand() % 1000)));
 }
