@@ -24,21 +24,7 @@ class Philosopher
         HAS_BOTH_FORKS
     };
 
-    struct PhiloState
-    {
-        PhilosopherState state = PhilosopherState::THINKING;
-    };
-
     int Id;
-    //int statePhilo;
-    //Fork *Left;
-    //Fork *Right;
-    //bool run;
-    std::vector<PhiloState> statusPhilo;
-    //std::list<std::mutex> forkMutex;
-    //std::unique_ptr<std::mutex> forkMutex;
-    //std::vector<std::unique_ptr<forkMutex>> p;
-    //std::vector<std::unique_ptr<std::mutex>> forkMutex;
     Philosopher();
     Philosopher(int id);
     ~Philosopher();
@@ -50,8 +36,6 @@ class Philosopher
     void PutLeftFork(int id);
     void PickRightFork(int id);
     void PutRightFork(int id);
-    //bool AbleToEat(int left, int right, int id);
-    //void Dine(int number);
 
     int getId();
     void setId(int number);

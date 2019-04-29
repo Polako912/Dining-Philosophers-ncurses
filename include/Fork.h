@@ -8,7 +8,6 @@ class Fork
 
     int Id;
     int stateFork;
-    std::mutex forkMutex;
     
     Fork();
     Fork(int number);

@@ -22,7 +22,4 @@ class Window
     void Think(int number);
     void Hungry(int number);
     void ReadyToEat(int number);
-    void RefreshPhiosopher(int id, std::string status);
-    void RefreshFork(int id, std::string status);
-
 };
